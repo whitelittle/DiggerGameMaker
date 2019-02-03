@@ -12,6 +12,11 @@ public class BrushBase : MonoBehaviour
     //端点数  
     private int LengthOfLineRenderer = 0;
 
+    //用来索引端点  
+    private Vector3 startPosition;
+    //端点数  
+    private Vector3 endPosition;
+
     void Start()
     {
         //添加LineRenderer组件  
@@ -27,6 +32,11 @@ public class BrushBase : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            //记录起点
+            startPosition = Input.mousePosition;
+        }
         //获取LineRenderer组件  
         lineRenderer = GetComponent<LineRenderer>();
         //鼠标左击  
@@ -50,7 +60,8 @@ public class BrushBase : MonoBehaviour
             position = new Vector3();
             index = 0;
             LengthOfLineRenderer = 0;
-
+            //记录起点
+            endPosition = Input.mousePosition;
 
         }
 
@@ -62,6 +73,11 @@ public class BrushBase : MonoBehaviour
     {
         GUILayout.Label("当前鼠标X轴位置：" + Input.mousePosition.x);
         GUILayout.Label("当前鼠标Y轴位置：" + Input.mousePosition.y);
+
+        GUILayout.Label("起点位置：(" + startPosition.x + "," + startPosition.y + ")");
+        GUILayout.Label("终点位置：(" + endPosition.x + "," + endPosition.y + ")");
+        GUILayout.Label("直角边交点：(" + endPosition.x + "," + startPosition.y + ")");
+
     }
 
 
