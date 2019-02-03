@@ -72,19 +72,22 @@ public class LueBrush : MonoBehaviour
         rig.useGravity = false;
         Vector3 offset_0 = Vector3.zero;
         Vector3 offset_1 = Vector3.zero;
-        for (int i = 2; i < points.Count; i++)
+        for (int i = 1; i < points.Count-1; i++)
         {
             yield return null;
             //终点减去起点获得向量
             offset_0 = points[i] - points[i - 1];
             offset_1 = points[i + 1] - points[i];
-            //施加力
-            if (Vector3.Dot(offset_0.normalized, offset_1.normalized) < 0.8f)
+            
+            //卸载力
+            if (Vector3.Dot(offset_0.normalized, offset_1.normalized) < 0.7f)
             {
+                rig.Sleep();
                 rig.WakeUp();
             }
 
-            rig.AddForce(offset_1 * 2);
+            //施加力
+            rig.AddForce(offset_0 * 2);
 
         }
         //修改游戏状态
