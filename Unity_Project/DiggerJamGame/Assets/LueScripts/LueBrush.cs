@@ -14,6 +14,8 @@ public class LueBrush : MonoBehaviour
     //端点数  
     private int LengthOfLineRenderer = 0;
 
+    [SerializeField] float forceRate = 10;
+
     //历经点记录
     [SerializeField] List<Vector3> points = new List<Vector3>();
     //球体物理
@@ -69,7 +71,7 @@ public class LueBrush : MonoBehaviour
         //添加刚体组件
         rig = gameObject.AddComponent<Rigidbody>();
         //关闭重力影响
-        rig.useGravity = false;
+        //rig.useGravity = false;
         Vector3 offset_0 = Vector3.zero;
         Vector3 offset_1 = Vector3.zero;
         Vector3 offset_2 = Vector3.zero;
@@ -92,14 +94,24 @@ public class LueBrush : MonoBehaviour
                 offset_0 = p1 - p2;
             }
             //施加力
-            rig.AddForce(offset_0 * 10);
+<<<<<<< HEAD
+            rig.AddForce(offset_0 * forceRate);
+        }
+        ////卸载力
+=======
+            rig.AddForce(offset_0 * 25);
         }
         //卸载力
-        if (Vector3.Dot(offset_0.normalized, offset_1.normalized) < 0.7f)
-        {
-            rig.Sleep();
-            rig.WakeUp();
-        }
+>>>>>>> bddb535ef72c126c953b462aae1872156540a014
+        //if (Vector3.Dot(offset_0.normalized, offset_1.normalized) < 0.7f)
+        //{
+        //    rig.Sleep();
+        //    rig.WakeUp();
+<<<<<<< HEAD
+        //    Debug.Log("666");
+=======
+>>>>>>> bddb535ef72c126c953b462aae1872156540a014
+        //}
         //修改游戏状态
         gameStatus = false;
         //清空点
