@@ -69,7 +69,7 @@ public class LueBrush : MonoBehaviour
         //添加刚体组件
         rig = gameObject.AddComponent<Rigidbody>();
         //关闭重力影响
-        rig.useGravity = false;
+        //rig.useGravity = false;
         Vector3 offset_0 = Vector3.zero;
         Vector3 offset_1 = Vector3.zero;
         Vector3 offset_2 = Vector3.zero;
@@ -92,14 +92,14 @@ public class LueBrush : MonoBehaviour
                 offset_0 = p1 - p2;
             }
             //施加力
-            rig.AddForce(offset_0 * 10);
+            rig.AddForce(offset_0 * 25);
         }
         //卸载力
-        if (Vector3.Dot(offset_0.normalized, offset_1.normalized) < 0.7f)
-        {
-            rig.Sleep();
-            rig.WakeUp();
-        }
+        //if (Vector3.Dot(offset_0.normalized, offset_1.normalized) < 0.7f)
+        //{
+        //    rig.Sleep();
+        //    rig.WakeUp();
+        //}
         //修改游戏状态
         gameStatus = false;
         //清空点
