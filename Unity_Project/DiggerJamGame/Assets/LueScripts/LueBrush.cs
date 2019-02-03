@@ -92,7 +92,7 @@ public class LueBrush : MonoBehaviour
                 offset_0 = p1 - p2;
             }
             //施加力
-            rig.AddForce(offset_0 * 10);
+            rig.AddForce(offset_0 * 25);
         }
         //卸载力
         //if (Vector3.Dot(offset_0.normalized, offset_1.normalized) < 0.7f)
