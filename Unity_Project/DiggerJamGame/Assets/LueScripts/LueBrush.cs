@@ -15,7 +15,7 @@ public class LueBrush : MonoBehaviour
     private int LengthOfLineRenderer = 0;
 
     //历经点记录
-    [SerializeField] List<Vector3> points = new List<Vector3>();
+    List<Vector3> points = new List<Vector3>();
     //球体物理
     Rigidbody rig;
 
@@ -92,7 +92,7 @@ public class LueBrush : MonoBehaviour
                 offset_0 = p1 - p2;
             }
             //施加力
-            rig.AddForce(offset_0 * 25);
+            rig.AddForce(offset_0 * 10);
         }
         //卸载力
         //if (Vector3.Dot(offset_0.normalized, offset_1.normalized) < 0.7f)
