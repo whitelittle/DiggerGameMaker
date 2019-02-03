@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
-public class UITools : Editor {
+public class UITools : MonoBehaviour {
 
-	[MenuItem("UITools/规律命名")]
-    public void ChangeTextName()
-    {
-
-    }
+	// Use this for initialization
+	void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
 }

@@ -104,6 +104,7 @@ public class BrushBase : MonoBehaviour
             {
                 //重置场景
                 SceneManager.LoadScene("Test_Brush");
+
             }
         }
  

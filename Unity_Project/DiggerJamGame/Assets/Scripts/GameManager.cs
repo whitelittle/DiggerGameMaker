@@ -15,9 +15,9 @@ public class GameManager : MonoBehaviour {
         Instance = this;
     }
 
-    public void LoadNextLoad(int levelIndex)
+    public void LoadNextLoad()
     {
-        SceneManager.LoadScene("Level_" + levelIndex);
-        CurLevel = levelIndex;
+        CurLevel++;
+        SceneManager.LoadScene("Level_" + CurLevel);
     }
 }
