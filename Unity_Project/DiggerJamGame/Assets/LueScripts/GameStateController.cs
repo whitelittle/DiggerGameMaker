@@ -8,6 +8,8 @@ public class GameStateController : MonoBehaviour {
     Camera mainCamera;
     //物体相对相机位置（0-1,0-1，z）;
     Vector2 viewPoint;
+    //通关目标的tag
+    [SerializeField] string passTag = "target";
     //是否完成判断
     bool isFinished = false;
     private void Start()
