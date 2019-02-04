@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 public class LueBrush : MonoBehaviour
 {
+    //力系数
+    private const int FORCE = 35;
+    //旋转速度
+    private const int SPEED = 250;
     public GameObject obj;
     //LineRenderer  
     private LineRenderer lineRenderer;
@@ -18,7 +22,7 @@ public class LueBrush : MonoBehaviour
     [SerializeField] List<Vector3> points = new List<Vector3>();
     //球体物理
     Rigidbody rig;
-
+    bool runStatus = false;
     private bool gameStatus = true;
     void Start()
     {
@@ -32,12 +36,21 @@ public class LueBrush : MonoBehaviour
         //设置宽度  
         lineRenderer.SetWidth(0.05f, 0.05f);
     }
+    void FixedUpdate()
+    {
+        if (runStatus)
+        {
+            obj.transform.Rotate(Vector3.forward * Time.deltaTime * SPEED);
+        }
+    }
     void Update()
     {
         if (Input.GetMouseButton(0))
         {
             //记录经过点
             points.Add(Input.mousePosition);
+          
+
         }
         //鼠标左击  
         if (Input.GetMouseButton(0) && gameStatus)
@@ -61,6 +74,7 @@ public class LueBrush : MonoBehaviour
             LengthOfLineRenderer = 0;
 
             StartCoroutine(ObjectAddForce());
+            runStatus = true;
         }
     }
 
@@ -92,7 +106,7 @@ public class LueBrush : MonoBehaviour
                 offset_0 = p1 - p2;
             }
             //施加力
-            rig.AddForce(offset_0 * 25);
+            rig.AddForce(offset_0 * FORCE);
         }
         //卸载力
         //if (Vector3.Dot(offset_0.normalized, offset_1.normalized) < 0.7f)
@@ -117,6 +131,8 @@ public class LueBrush : MonoBehaviour
         {
             if (GUI.Button(new Rect(50, 250, 200, 30), "重置"))
             {
+                runStatus = false;
+
                 //重置回当前场景
                 Scene scene = SceneManager.GetActiveScene();
                 SceneManager.LoadScene(scene.name);
