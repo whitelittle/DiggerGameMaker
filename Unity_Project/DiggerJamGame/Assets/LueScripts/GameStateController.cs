@@ -10,7 +10,8 @@ public class GameStateController : MonoBehaviour {
     Vector2 viewPoint;
     //通关目标的tag
     [SerializeField] string passTag = "target";
-
+    //是否完成判断
+    bool isFinished = false;
     private void Start()
     {
         mainCamera = Camera.main;
@@ -20,9 +21,11 @@ public class GameStateController : MonoBehaviour {
     void Update() {
         viewPoint = mainCamera.WorldToViewportPoint(gameObject.transform.position);
 
+        if (isFinished) return;
         if (viewPoint.x < 0 || viewPoint.x > 1 || viewPoint.y < 0 || viewPoint.y > 1)
         {
-            Debug.Log("跑出屏幕外,重置回该关卡"); 
+            Debug.Log("跑出屏幕外,重置回该关卡");
+            isFinished = true;
         }
     }
 
@@ -34,9 +37,11 @@ public class GameStateController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        if (isFinished) return;
         if (other.CompareTag(passTag))
         {
             Debug.Log("到达目标，进入下一关");
+            isFinished = true;
         }
     }
 }
