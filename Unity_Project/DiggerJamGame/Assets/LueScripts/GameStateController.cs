@@ -1,0 +1,42 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class GameStateController : MonoBehaviour {
+
+    //主摄像机引用
+    Camera mainCamera;
+    //物体相对相机位置（0-1,0-1，z）;
+    Vector2 viewPoint;
+    //通关目标的tag
+    [SerializeField] string passTag = "target";
+
+    private void Start()
+    {
+        mainCamera = Camera.main;
+    }
+
+    // Update is called once per frame
+    void Update() {
+        viewPoint = mainCamera.WorldToViewportPoint(gameObject.transform.position);
+
+        if (viewPoint.x < 0 || viewPoint.x > 1 || viewPoint.y < 0 || viewPoint.y > 1)
+        {
+            Debug.Log("跑出屏幕外,重置回该关卡"); 
+        }
+    }
+
+    void OnGUI()
+    {
+        GUILayout.Space(100);
+        GUILayout.Label("当前物体位置：" + viewPoint);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(passTag))
+        {
+            Debug.Log("到达目标，进入下一关");
+        }
+    }
+}
