@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 public class LueBrush : MonoBehaviour
 {
     //力系数
-    private const int FORCE = 35;
+    private const int FORCE = 25;
     //旋转速度
-    private const int SPEED = 250;
+    private const int SPEED = 100;
     public GameObject obj;
     //LineRenderer  
     private LineRenderer lineRenderer;

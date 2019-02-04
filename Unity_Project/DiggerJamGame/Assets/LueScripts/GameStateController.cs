@@ -38,7 +38,7 @@ public class GameStateController : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         if (isFinished) return;
-        if (other.CompareTag(passTag))
+        if (other.CompareTag("target"))
         {
             Debug.Log("到达目标，进入下一关");
             isFinished = true;
