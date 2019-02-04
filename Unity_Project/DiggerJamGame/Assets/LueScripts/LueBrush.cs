@@ -108,12 +108,6 @@ public class LueBrush : MonoBehaviour
             //施加力
             rig.AddForce(offset_0 * FORCE);
         }
-        //卸载力
-        //if (Vector3.Dot(offset_0.normalized, offset_1.normalized) < 0.7f)
-        //{
-        //    rig.Sleep();
-        //    rig.WakeUp();
-        //}
         //修改游戏状态
         gameStatus = false;
         //清空点
