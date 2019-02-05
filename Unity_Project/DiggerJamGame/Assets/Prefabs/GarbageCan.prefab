@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4601112572117248}
   - component: {fileID: 212993369910025028}
   m_Layer: 0
-  m_Name: ljt
+  m_Name: GarbageCan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
