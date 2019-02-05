@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
 
     public GameObject playerObj;
     public GameObject brushObj;
+    public Texture2D texture;
     Brush brush;
     Force force;
     
@@ -72,24 +73,32 @@ public class GameController : MonoBehaviour
     }
     void windowfunction(int windowid)
     {
-      
+        //设置字体样式
+        GUIStyle fontStyle = new GUIStyle
+        {
+            alignment = TextAnchor.MiddleCenter,
+            fontSize = 25,
+        };
+        fontStyle.normal.textColor = Color.white;
+        fontStyle.normal.background= texture??new Texture2D(400,100);
+
         if (playerObj.GetComponent<GameStateController>().isWin)
         {
-            if (GUI.Button(new Rect(Screen.width / 2 - 200, Screen.height / 2 - 200, 400, 100), "下一关"))
+            if (GUI.Button(new Rect(Screen.width / 2 - 200, Screen.height / 2 - 200, 400, 100), "下一关", fontStyle))
             {
                 brush.BrushStatus = false;
                 //进入下一个场景
                
             }
         }
-        if (GUI.Button(new Rect(Screen.width/2-200, Screen.height/2-50, 400, 100), "再试一次"))
+        if (GUI.Button(new Rect(Screen.width/2-200, Screen.height/2-50, 400, 100), "再试一次", fontStyle))
         {
             brush.BrushStatus = false;
             //重置回当前场景
             Scene scene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(scene.name);
         }
-        if (GUI.Button(new Rect(Screen.width / 2 - 200, Screen.height / 2 +100, 400, 100), "选关界面"))
+        if (GUI.Button(new Rect(Screen.width / 2 - 200, Screen.height / 2 +100, 400, 100), "选关界面", fontStyle))
         {
             brush.BrushStatus = false;
             //重置回当前场景
