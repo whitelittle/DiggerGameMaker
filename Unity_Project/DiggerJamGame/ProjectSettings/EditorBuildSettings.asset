@@ -5,12 +5,39 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
+    path: Assets/Main.unity
+    guid: 2a2611bc034185c4fbce9128ccc862c9
+  - enabled: 1
     path: Assets/Chapter/Chapter0.unity
     guid: f63f20558f0d7d54a801e398e72f5481
   - enabled: 1
-    path: Assets/Scene/Test_Chapter.unity
-    guid: 55c36260446433647a8833822181177b
-  - enabled: 0
-    path: Assets/Scene/Brush_Test 1.unity
-    guid: 1a67550bdfdee044c97d4c9ea240a076
+    path: Assets/Chapter/Chapter01.unity
+    guid: f6ac1f0b98a5ef84eba44d2c00646871
+  - enabled: 1
+    path: Assets/Chapter/Chapter02.unity
+    guid: 4a6723c8e7ef25744a89d7b1cc2ca2dc
+  - enabled: 1
+    path: Assets/Chapter/Chapter03.unity
+    guid: c452ec66b94afc342ac27ff720ccc483
+  - enabled: 1
+    path: Assets/Chapter/Chapter04.unity
+    guid: 3eca7cbfc73e2f7469b151fa3d2bb74d
+  - enabled: 1
+    path: Assets/Chapter/Chapter05.unity
+    guid: d21edd0d0de45e54894c93b3fdcd2794
+  - enabled: 1
+    path: Assets/Chapter/Chapter06.unity
+    guid: 9ca655d602a94d74eb9d298d93815424
+  - enabled: 1
+    path: Assets/Chapter/Chapter07.unity
+    guid: 4735193ee0ab35c48b51b81f663abab8
+  - enabled: 1
+    path: Assets/Chapter/Chapter08.unity
+    guid: 559f685dd552c6f40a46e88b04c37a6c
+  - enabled: 1
+    path: Assets/Chapter/Chapter09.unity
+    guid: 2f57143223c82f045814b0375d1e07f3
+  - enabled: 1
+    path: Assets/Chapter/Chapter10.unity
+    guid: 6811012bb2175814bb2fb31232fd9299
