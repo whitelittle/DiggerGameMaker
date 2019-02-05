@@ -297,6 +297,16 @@ Prefab:
       propertyPath: brushGameObj
       value: 
       objectReference: {fileID: 1002490970}
+    - target: {fileID: 114242925982961040, guid: b2d7ac2143b2e7e40bd924b146e8d17b,
+        type: 2}
+      propertyPath: playerObj
+      value: 
+      objectReference: {fileID: 2126919555}
+    - target: {fileID: 114242925982961040, guid: b2d7ac2143b2e7e40bd924b146e8d17b,
+        type: 2}
+      propertyPath: brushObj
+      value: 
+      objectReference: {fileID: 1002490970}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b2d7ac2143b2e7e40bd924b146e8d17b, type: 2}
   m_IsPrefabParent: 0
@@ -753,3 +763,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2126919555 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1739192805755080, guid: b2d7ac2143b2e7e40bd924b146e8d17b,
+    type: 2}
+  m_PrefabInternal: {fileID: 952996283}
