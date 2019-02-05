@@ -60,6 +60,7 @@ public class GameController : MonoBehaviour
 
     void OnGUI()
     {
+        GUILayout.Space(100);
         GUILayout.Label("当前鼠标X轴位置：" + Input.mousePosition.x);
         GUILayout.Label("当前鼠标Y轴位置：" + Input.mousePosition.y);
 

@@ -29,7 +29,7 @@ public class GameStateController : MonoBehaviour {
 
     void OnGUI()
     {
-        GUILayout.Space(100);
+        GUILayout.Space(200);
         GUILayout.Label("当前物体位置：" + viewPoint);
     }
 

@@ -11,19 +11,29 @@ public class Brush : MonoBehaviour {
 
     public static Brush GetInstance(GameObject gameObject)
     {
+
         if (_brush == null)
         {
-            _brush = new Brush();
-            _brush.GameObject = gameObject;
-            _brush.Index = 0;
-            _brush.LengthOfLineRenderer = 0;
-            _brush.Points = new List<Vector3>();
-            _brush.BrushStatus = false;
-            _brush.LineRenderer = gameObject.AddComponent<LineRenderer>();
-            _brush.LineRenderer.material = new Material(Shader.Find("Particles/Additive"));
-            _brush.LineRenderer.SetColors(Color.red, Color.blue);
-            _brush.LineRenderer.SetWidth(0.05f, 0.05f);
+           
+                _brush = new Brush();
+                _brush.GameObject = gameObject;
+                _brush.Index = 0;
+                _brush.LengthOfLineRenderer = 0;
+                _brush.Points = new List<Vector3>();
+                _brush.BrushStatus = false;
+                _brush.LineRenderer = gameObject.AddComponent<LineRenderer>();
+                _brush.LineRenderer.material = new Material(Shader.Find("Particles/Additive"));
+                //_brush.LineRenderer.SetColors(Color.black, Color.black);
+                _brush.LineRenderer.startColor = Color.black;
+                _brush.LineRenderer.endColor = Color.white;
+                //_brush.LineRenderer.SetWidth(0.05f, 0.05f);
+                _brush.LineRenderer.startWidth = 0.1f;
+                _brush.LineRenderer.endWidth = 0.025f;
+
+
+
         }
+
         return _brush;
     }
 
