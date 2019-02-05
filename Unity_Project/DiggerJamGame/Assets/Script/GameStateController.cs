@@ -9,7 +9,8 @@ public class GameStateController : MonoBehaviour {
     //物体相对相机位置（0-1,0-1，z）;
     Vector2 viewPoint;
     //是否完成判断
-    bool isFinished = false;
+    public bool isFinished = false;
+    public bool isWin = false;
     private void Start()
     {
         mainCamera = Camera.main;
@@ -29,8 +30,8 @@ public class GameStateController : MonoBehaviour {
 
     void OnGUI()
     {
-        GUILayout.Space(200);
-        GUILayout.Label("当前物体位置：" + viewPoint);
+        //GUILayout.Space(200);
+        //GUILayout.Label("当前物体位置：" + viewPoint);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,6 +41,7 @@ public class GameStateController : MonoBehaviour {
         {
             Debug.Log("到达目标，进入下一关");
             isFinished = true;
+            isWin = true;
         }
     }
 }

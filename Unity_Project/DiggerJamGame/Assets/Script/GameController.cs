@@ -6,7 +6,7 @@ public class GameController : MonoBehaviour
 {
 
 
-    public bool GameStatus { get; set; }
+
     public GameObject playerObj;
     public GameObject brushObj;
     Brush brush;
@@ -14,7 +14,6 @@ public class GameController : MonoBehaviour
     
     private void Awake()
     {
-        GameStatus = true;
         brush = Brush.GetInstance(brushObj);
         force = Force.GetInstance(playerObj);
     }
@@ -29,11 +28,11 @@ public class GameController : MonoBehaviour
             brush.Points.Add(Input.mousePosition);  //记录经过点
         }
         //鼠标左击  
-        if (Input.GetMouseButton(0) && GameStatus)
+        if (Input.GetMouseButton(0) && !playerObj.GetComponent<GameStateController>().isFinished)
         {
             brush.PrintLine();
         }
-        if (Input.GetMouseButtonUp(0) && GameStatus)
+        if (Input.GetMouseButtonUp(0) && !playerObj.GetComponent<GameStateController>().isFinished)
         {
             //清空上一条线的数据
             brush.ClearBrush();
@@ -54,31 +53,50 @@ public class GameController : MonoBehaviour
         }
         //清空点
         brush.Points.Clear();
-        //修改游戏状态
-        GameStatus = false;
+       
     }
 
     void OnGUI()
     {
-        GUILayout.Space(100);
-        GUILayout.Label("当前鼠标X轴位置：" + Input.mousePosition.x);
-        GUILayout.Label("当前鼠标Y轴位置：" + Input.mousePosition.y);
-
-
-        GUILayout.Label("状态：" + GameStatus);
-        if (!GameStatus)
+        //GUILayout.Space(100);
+        //GUILayout.Label("当前鼠标X轴位置：" + Input.mousePosition.x);
+        //GUILayout.Label("当前鼠标Y轴位置：" + Input.mousePosition.y);
+        //GUILayout.Label("状态：" + GameStatus);
+        if (playerObj.GetComponent<GameStateController>().isFinished)
         {
-            if (GUI.Button(new Rect(50, 250, 200, 30), "重置"))
-            {
-                brush.BrushStatus = false;
+            Rect windowrect = new Rect(0, 0, Screen.width, Screen.height);
+            GUI.Window(0, windowrect, windowfunction, "");
 
-                //重置回当前场景
-                Scene scene = SceneManager.GetActiveScene();
-                SceneManager.LoadScene(scene.name);
-            }
         }
 
     }
-
+    void windowfunction(int windowid)
+    {
+      
+        if (playerObj.GetComponent<GameStateController>().isWin)
+        {
+            if (GUI.Button(new Rect(Screen.width / 2 - 200, Screen.height / 2 - 200, 400, 100), "下一关"))
+            {
+                brush.BrushStatus = false;
+                //进入下一个场景
+               
+            }
+        }
+        if (GUI.Button(new Rect(Screen.width/2-200, Screen.height/2-50, 400, 100), "再试一次"))
+        {
+            brush.BrushStatus = false;
+            //重置回当前场景
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+        }
+        if (GUI.Button(new Rect(Screen.width / 2 - 200, Screen.height / 2 +100, 400, 100), "选关界面"))
+        {
+            brush.BrushStatus = false;
+            //重置回当前场景
+           
+        }
+        //定义窗体可以活动的范围
+        GUI.DragWindow(new Rect(0, 0, 10000, 10000));
+    }
 
 }
