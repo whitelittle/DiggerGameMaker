@@ -751,3 +751,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerObj: {fileID: 2126919555}
   brushObj: {fileID: 1002490970}
+  texture: {fileID: 2800000, guid: 6ccbad29f7821844eb2a6b15be74befe, type: 3}
