@@ -33,7 +33,7 @@ public class LoadLevel : MonoBehaviour {
         {
             //根据关卡数实例化关卡按钮
             GameObject btnGo = Instantiate(btnPrefab, btnContent);
-
+            btnGo.transform.Translate(10,10,100);
             //开辟新内存 防止onClick监听至同一个参数
             int index = i;
 

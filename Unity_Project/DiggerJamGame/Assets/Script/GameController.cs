@@ -80,7 +80,7 @@ public class GameController : MonoBehaviour
             GUI.Window(0, windowrect, windowfunction, "");
         }
 
-        if (GUI.Button(new Rect(0, 0, 80, 40), "返回"))
+        if (GUI.Button(new Rect(25, 25, 80, 40), "菜单"))
         {
             touchBack = true;
         }
