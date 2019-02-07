@@ -8,7 +8,7 @@ using System;
 
 public static class GameManager{
 
-    static string GameDataPath = Application.dataPath + "/Data/GameData.txt";
+    static string GameDataPath = Application.streamingAssetsPath + "/GameData.txt";
 
     //关卡索引从下标1开始算起
     public static int curLevelIndex = 1;
