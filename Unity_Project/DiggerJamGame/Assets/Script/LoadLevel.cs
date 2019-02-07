@@ -17,17 +17,19 @@ public class LoadLevel : MonoBehaviour {
     {
         //关卡数=总场景数-Main场景
         levelCount = SceneManager.sceneCountInBuildSettings - 1;
+        GameManager.levelCount = levelCount;
     }
 
     private void Start()
     {
+        GameManager.LoadGameData();
         SpawnButton();
     }
 
     public void SpawnButton()
     {
         //索引0是关卡选择场景
-        for (int i = 1; i < levelCount; i++)
+        for (int i = 1; i <= levelCount; i++)
         {
             //根据关卡数实例化关卡按钮
             GameObject btnGo = Instantiate(btnPrefab, btnContent);

@@ -4,19 +4,30 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
-
-
+   
+    GUIStyle fontStyle; //字体样式
 
     public GameObject playerObj;
     public GameObject brushObj;
     public Texture2D texture;
     Brush brush;
     Force force;
-    
+
+    bool touchBack;
+
     private void Awake()
     {
         brush = Brush.GetInstance(brushObj);
         force = Force.GetInstance(playerObj);
+
+        //设置字体样式
+        fontStyle = new GUIStyle
+        {
+            alignment = TextAnchor.MiddleCenter,
+            fontSize = 25,
+        };
+        fontStyle.normal.textColor = Color.white;
+        fontStyle.normal.background = texture ?? new Texture2D(400, 100);
     }
     void FixedUpdate()
     {
@@ -67,45 +78,67 @@ public class GameController : MonoBehaviour
         {
             Rect windowrect = new Rect(0, 0, Screen.width, Screen.height);
             GUI.Window(0, windowrect, windowfunction, "");
+        }
 
+        if (GUI.Button(new Rect(0, 0, 80, 40), "返回"))
+        {
+            touchBack = true;
+        }
+
+        if (touchBack)
+        {
+            OnAgainButton();
+            OnChoseLevelButton();
         }
 
     }
     void windowfunction(int windowid)
     {
-        //设置字体样式
-        GUIStyle fontStyle = new GUIStyle
-        {
-            alignment = TextAnchor.MiddleCenter,
-            fontSize = 25,
-        };
-        fontStyle.normal.textColor = Color.white;
-        fontStyle.normal.background= texture??new Texture2D(400,100);
-
+        
         if (playerObj.GetComponent<GameStateController>().isWin)
         {
-            if (GUI.Button(new Rect(Screen.width / 2 - 200, Screen.height / 2 - 200, 400, 100), "下一关", fontStyle))
+            if (GameManager.curLevelIndex < GameManager.levelCount)
+            {
+                if (GUI.Button(new Rect(Screen.width / 2 - 200, Screen.height / 2 - 200, 400, 100), "下一关", fontStyle))
+                {
+                    brush.BrushStatus = false;
+                    //进入下一个场景
+                    GameManager.LoadNextLevel();
+                }
+            }
+            else
             {
                 brush.BrushStatus = false;
-                //进入下一个场景
-               
+                //显示通关文本
+                GUI.Label(new Rect(Screen.width / 2 - 200, Screen.height / 2 - 200, 400, 100), "通过所有关卡", fontStyle);
             }
+            
         }
-        if (GUI.Button(new Rect(Screen.width/2-200, Screen.height/2-50, 400, 100), "再试一次", fontStyle))
+
+        OnAgainButton();
+        OnChoseLevelButton();
+        //定义窗体可以活动的范围
+        GUI.DragWindow(new Rect(0, 0, 10000, 10000));
+    }
+
+    void OnAgainButton()
+    {
+        if (GUI.Button(new Rect(Screen.width / 2 - 200, Screen.height / 2 - 50, 400, 100), "再试一次", fontStyle))
         {
             brush.BrushStatus = false;
             //重置回当前场景
             Scene scene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(scene.name);
         }
-        if (GUI.Button(new Rect(Screen.width / 2 - 200, Screen.height / 2 +100, 400, 100), "选关界面", fontStyle))
-        {
-            brush.BrushStatus = false;
-            //重置回当前场景
-           
-        }
-        //定义窗体可以活动的范围
-        GUI.DragWindow(new Rect(0, 0, 10000, 10000));
     }
 
+    void OnChoseLevelButton()
+    {
+        if (GUI.Button(new Rect(Screen.width / 2 - 200, Screen.height / 2 + 100, 400, 100), "选关界面", fontStyle))
+        {
+            brush.BrushStatus = false;
+            //重置回选关场景
+            SceneManager.LoadScene(0);
+        }
+    }
 }
