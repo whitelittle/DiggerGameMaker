@@ -8,7 +8,25 @@ using System;
 
 public static class GameManager{
 
-    static string GameDataPath = Application.streamingAssetsPath + "/GameData.txt";
+    public static string AssetCachesDir
+    {
+        get
+        {
+            string path = "";
+            #if UNITY_EDITOR
+              path = Application.dataPath + "/StreamingAssets/GameData.txt";
+            #elif UNITY_IOS
+              path = Application.temporaryCachePath +  "/GameData.txt";
+            #elif UNITY_ANDROID
+              path = Application.persistentDataPath +  "/GameData.txt";
+            #else
+              path = Application.streamingAssetsPath + "/GameData.txt";
+            #endif
+            Debug.Log(path);
+            return path;
+        }
+    }
+    static string GameDataPath = AssetCachesDir;
 
     //关卡索引从下标1开始算起
     public static int curLevelIndex = 1;
@@ -67,12 +85,28 @@ public static class GameManager{
         string[] strs = listStr.ToArray();
         WriteFile(GameDataPath,strs);
     }
+    /// <summary>
+    /// 保存游戏数据
+    /// </summary>
+    public static void SaveGameData(int lever)
+    {
+        listStr.Clear();
+        listStr.Add("maxLevelIndex," + lever.ToString());
+
+        string[] strs = listStr.ToArray();
+        WriteFile(GameDataPath, strs);
+    }
 
     /// <summary>
     /// 加载游戏数据
     /// </summary>
     public static void LoadGameData()
     {
+        if (!File.Exists(GameDataPath))
+        {
+            CreateGameData(GameDataPath);
+           
+        }
         //读取文本 
         string[] strs = ReadFile();
         List<string> tempStrList = new List<string>();
@@ -86,6 +120,7 @@ public static class GameManager{
 
     private static string[] ReadFile()
     {
+      
         string[] strs = File.ReadAllLines(GameDataPath);//读取文件的所有行，并将数据读取到定义好的字符数组strs中，一行存一个单元
         return strs;
     }
@@ -93,5 +128,9 @@ public static class GameManager{
     public static void WriteFile(string path,string[] strs)
     {
         File.WriteAllLines(path, strs);
+    }
+    public static void CreateGameData(string path)
+    {
+        SaveGameData(1);
     }
 }
