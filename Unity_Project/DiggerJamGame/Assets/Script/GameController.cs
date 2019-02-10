@@ -64,13 +64,14 @@ public class GameController : MonoBehaviour
         for (int i = 1; i < brush.Points.Count-1; i++)
         {
             yield return null;
-
-            Vector3 tempForce = force.GetForce(brush.Points, i);
-            if (tempForce.magnitude > 500)
-            {
-                tempForce = tempForce.normalized * 500;
-            }
-            force.Rigidbody.AddForce(tempForce);//施加力
+            //限制速度
+            //Vector3 tempForce = force.GetForce(brush.Points, i);
+            //if (tempForce.magnitude > 500)
+            //{
+            //    tempForce = tempForce.normalized * 500;
+            //}
+            //force.Rigidbody.AddForce(tempForce);//施加力
+            force.Rigidbody.AddForce(force.GetForce(brush.Points, i));//施加力
         }
         //清空点
         brush.Points.Clear();

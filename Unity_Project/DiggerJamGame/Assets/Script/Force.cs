@@ -6,9 +6,9 @@ public class Force : MonoBehaviour {
 
 
     //力系数
-    private const int FORCE = 25;
+    private const int FORCE = 40;
     //旋转速度
-    private const int SPEED = 100;
+    private const int SPEED = 50;
 
     private static Force _force = null;
     private Force()
