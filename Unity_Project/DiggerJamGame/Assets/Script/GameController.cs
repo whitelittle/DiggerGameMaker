@@ -58,10 +58,19 @@ public class GameController : MonoBehaviour
      
         //关闭重力影响
         force.Rigidbody.useGravity = true;
+        //设置刚体
+        force.Rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+    
         for (int i = 1; i < brush.Points.Count-1; i++)
         {
             yield return null;
-            force.Rigidbody.AddForce(force.GetForce(brush.Points,i));//施加力
+
+            Vector3 tempForce = force.GetForce(brush.Points, i);
+            if (tempForce.magnitude > 500)
+            {
+                tempForce = tempForce.normalized * 500;
+            }
+            force.Rigidbody.AddForce(tempForce);//施加力
         }
         //清空点
         brush.Points.Clear();
