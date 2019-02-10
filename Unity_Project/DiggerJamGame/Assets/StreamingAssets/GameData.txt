@@ -1,1 +1,1 @@
-maxLevelIndex,2
+maxLevelIndex,1
